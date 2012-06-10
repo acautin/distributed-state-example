@@ -4,10 +4,10 @@ Small example showing how to keep a backup of the state of a gen_server in a rem
 
 ___NOTE1: To me player =:= user ;)___
 
-## Asumptions ##
+## Assumptions ##
 
 1. A new node is connected to the cluster before start processing requests.
-2. If a node is disconected, is killed and don't process more requests.
+2. If a node is disconnected, is killed and don't process more requests.
 3. At least 2 nodes needs to be alive for the system to work.
 
 ## Implementation details ##
@@ -24,7 +24,7 @@ local_players: Return a list with the players that are in this particular node.
 
 There is a unique gen_server representing a user connected to the system, for each one of this users the system creates a "state keeper" on a different node.
 
-When a user connects to the system the gen_server for this user is created on the local node, there are 3 posibilities for the backups.
+When a user connects to the system the gen_server for this user is created on the local node, there are 3 possibilities for the backups.
 * There is no backup running for this user: A new backup is created on a remote node.
 * There is a backup running on a remote node: State is restored from the backup.
 * The backup is running in the same node: State is restored from the backup, the backup is terminated and started again on a different node.
@@ -48,7 +48,7 @@ reward players from any node:
 	interface:reward_player(<<"player1">>, 5).
 	5
 
-reward a player with something different than an integer and see how the suppervisor restart the gen_server and the state is preserved:
+reward a player with something different than an integer and see how the supervisor restart the gen_server and the state is preserved:
 
 	interface:reward_player(<<"player1">>, a).
 	CRASH!!
@@ -59,6 +59,6 @@ now feel free to explore and kill and restart nodes and keep rewarding players t
 
 ## Disclaimer ##
 
-This is just an excercise to learn more about erlang and otp, probably there are a lot of better ways of doing this.
+This is just an exercise to learn more about erlang and otp, probably there are a lot of better ways of doing this.
 
 This example was motivated by an interesting discussion on the [Zurich erlang user group](https://groups.google.com/forum/?fromgroups#!topic/zurich-erlang-user-group/WXroj2IPm8I).
