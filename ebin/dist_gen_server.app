@@ -1,0 +1,9 @@
+{application,dist_gen_server,
+             [{description,[]},
+              {vsn,"1"},
+              {registered,[]},
+              {applications,[kernel,stdlib]},
+              {mod,{dist_gen_server_app,[]}},
+              {env,[]},
+              {modules,[connected_user,dist_gen_server,dist_gen_server_app,
+                        dist_gen_server_sup,interface,user_backup]}]}.
