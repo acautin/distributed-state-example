@@ -7,7 +7,7 @@ ___NOTE1: To me player =:= user ;)___
 ## Assumptions ##
 
 1. A new node is connected to the cluster before start processing requests.
-2. If a node is disconnected, is killed and don't process more requests.
+2. If a node is disconnected, is killed and stops processing requests.
 3. At least 2 nodes needs to be alive for the system to work.
 
 ## Implementation details ##
@@ -19,8 +19,8 @@ A "interface" is provided to interact with the system, there are only 2 function
 	interface:reward_player(Player/binary, Points/int).
 	interface:local_players().
 
-reward_player: Add points to a player, negative points are allowed.
-local_players: Return a list with the players that are in this particular node.
+* reward_player: Add points to a player, negative points are allowed.
+* local_players: Return a list with the players that are in this particular node.
 
 There is a unique gen_server representing a user connected to the system, for each one of this users the system creates a "state keeper" on a different node.
 
@@ -48,7 +48,7 @@ reward players from any node:
 	interface:reward_player(<<"player1">>, 5).
 	5
 
-reward a player with something different than an integer and see how the supervisor restart the gen_server and the state is preserved:
+reward a player with something different than an integer and see how the supervisor restarts the gen_server and the state is preserved:
 
 	interface:reward_player(<<"player1">>, a).
 	CRASH!!
